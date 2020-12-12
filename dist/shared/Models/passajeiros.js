@@ -27,20 +27,20 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var users = /*#__PURE__*/function (_Model) {
-  (0, _inherits2["default"])(users, _Model);
+var passajeiros = /*#__PURE__*/function (_Model) {
+  (0, _inherits2["default"])(passajeiros, _Model);
 
-  var _super = _createSuper(users);
+  var _super = _createSuper(passajeiros);
 
-  function users() {
-    (0, _classCallCheck2["default"])(this, users);
+  function passajeiros() {
+    (0, _classCallCheck2["default"])(this, passajeiros);
     return _super.apply(this, arguments);
   }
 
-  (0, _createClass2["default"])(users, null, [{
+  (0, _createClass2["default"])(passajeiros, null, [{
     key: "init",
     value: function init(connection) {
-      (0, _get2["default"])((0, _getPrototypeOf2["default"])(users), "init", this).call(this, {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(passajeiros), "init", this).call(this, {
         name: _sequelize["default"].STRING,
         age: _sequelize["default"].INTEGER,
         cpf: _sequelize["default"].STRING,
@@ -52,8 +52,8 @@ var users = /*#__PURE__*/function (_Model) {
       return this;
     }
   }]);
-  return users;
+  return passajeiros;
 }(_sequelize.Model);
 
-var _default = users;
+var _default = passajeiros;
 exports["default"] = _default;

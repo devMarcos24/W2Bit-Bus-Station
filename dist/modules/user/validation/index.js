@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateBusValidation = exports.createBusValidation = void 0;
+exports.sessionValidation = exports.createUserValidation = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -13,21 +13,24 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _joi = _interopRequireDefault(require("joi"));
 
-var createBusValidation = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(bus) {
+var createUserValidation = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(user) {
     var schema, verifySchema;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             schema = _joi["default"].object({
-              placa: _joi["default"].string().required("Placa is required"),
-              ano: _joi["default"].number().required("Ano is required"),
-              modelo: _joi["default"].string().required("Modelo is required"),
-              acentos: _joi["default"].number().required("Acentos is required")
+              name: _joi["default"].string().required("Name is required"),
+              email: _joi["default"].string().required("Email is required"),
+              url_foto: _joi["default"].string(),
+              state: _joi["default"].string().required("State is required"),
+              city: _joi["default"].string().required("City is required"),
+              password: _joi["default"].string().required("Password is required"),
+              confirmPassword: _joi["default"].string().required("Confirm is required")
             });
             _context.next = 3;
-            return _joi["default"].validate(bus, schema);
+            return _joi["default"].validate(user, schema);
 
           case 3:
             verifySchema = _context.sent;
@@ -41,28 +44,26 @@ var createBusValidation = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function createBusValidation(_x) {
+  return function createUserValidation(_x) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.createBusValidation = createBusValidation;
+exports.createUserValidation = createUserValidation;
 
-var updateBusValidation = /*#__PURE__*/function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(bus) {
+var sessionValidation = /*#__PURE__*/function () {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(session) {
     var schema, verifySchema;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             schema = _joi["default"].object({
-              placa: _joi["default"].string(),
-              ano: _joi["default"].number(),
-              modelo: _joi["default"].string(),
-              acentos: _joi["default"].number()
+              email: _joi["default"].string().required("Email is required"),
+              password: _joi["default"].string().required("Password is required")
             });
             _context2.next = 3;
-            return _joi["default"].validate(bus, schema);
+            return _joi["default"].validate(session, schema);
 
           case 3:
             verifySchema = _context2.sent;
@@ -76,9 +77,9 @@ var updateBusValidation = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function updateBusValidation(_x2) {
+  return function sessionValidation(_x2) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.updateBusValidation = updateBusValidation;
+exports.sessionValidation = sessionValidation;

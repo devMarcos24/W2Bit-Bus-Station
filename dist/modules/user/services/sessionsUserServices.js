@@ -19,6 +19,8 @@ var _bcrypt = require("bcrypt");
 
 var _jsonwebtoken = require("jsonwebtoken");
 
+var _validation = require("../validation");
+
 var _auth = _interopRequireDefault(require("../../../config/auth"));
 
 var CreateUserService = /*#__PURE__*/function () {
@@ -38,37 +40,44 @@ var CreateUserService = /*#__PURE__*/function () {
               case 0:
                 email = _ref.email, password = _ref.password;
                 _context.next = 3;
+                return (0, _validation.sessionValidation)({
+                  email: email,
+                  password: password
+                });
+
+              case 3:
+                _context.next = 5;
                 return this.db.findOne({
                   where: {
                     email: email
                   }
                 });
 
-              case 3:
+              case 5:
                 user = _context.sent;
 
                 if (user) {
-                  _context.next = 6;
+                  _context.next = 8;
                   break;
                 }
 
                 throw new Error("email/password is invalid");
 
-              case 6:
-                _context.next = 8;
+              case 8:
+                _context.next = 10;
                 return (0, _bcrypt.compare)(password, user.password_hash);
 
-              case 8:
+              case 10:
                 verifyPassword = _context.sent;
 
                 if (verifyPassword) {
-                  _context.next = 11;
+                  _context.next = 13;
                   break;
                 }
 
                 throw new Error("email/password is invalid");
 
-              case 11:
+              case 13:
                 token = (0, _jsonwebtoken.sign)({}, _auth["default"].jwt.secret, {
                   subject: user.id.toString(),
                   expiresIn: _auth["default"].jwt.expiresIn
@@ -78,7 +87,7 @@ var CreateUserService = /*#__PURE__*/function () {
                   token: token
                 });
 
-              case 13:
+              case 15:
               case "end":
                 return _context.stop();
             }

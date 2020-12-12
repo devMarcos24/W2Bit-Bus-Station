@@ -19,7 +19,7 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _bcrypt = require("bcrypt");
 
-var _validations = require("../validation/validations");
+var _validation = require("../validation");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -41,7 +41,7 @@ var CreateUserService = /*#__PURE__*/function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return (0, _validations.createUserValidation)(user);
+                return (0, _validation.createUserValidation)(user);
 
               case 2:
                 if (!(user.password != user.confirmPassword)) {

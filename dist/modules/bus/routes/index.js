@@ -26,7 +26,8 @@ var BusRoutes = /*#__PURE__*/function () {
       var busRouter = (0, _express.Router)();
       busRouter.post("/", _authenticateMiddleware["default"], busController.create);
       busRouter.get("/", _authenticateMiddleware["default"], busController.index);
-      busRouter.get("/:id", _authenticateMiddleware["default"], busController.list);
+      busRouter.get("/:id", _authenticateMiddleware["default"], busController.show);
+      busRouter.put("/:id", _authenticateMiddleware["default"], busController.update);
       busRouter["delete"]("/:id", _authenticateMiddleware["default"], busController["delete"]);
       return busRouter;
     }

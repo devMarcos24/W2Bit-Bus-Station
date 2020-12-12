@@ -15,13 +15,15 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var listAllBusServices = /*#__PURE__*/function () {
-  function listAllBusServices(db) {
-    (0, _classCallCheck2["default"])(this, listAllBusServices);
+var _validation = require("../validation");
+
+var updateBusServices = /*#__PURE__*/function () {
+  function updateBusServices(db) {
+    (0, _classCallCheck2["default"])(this, updateBusServices);
     this.db = db;
   }
 
-  (0, _createClass2["default"])(listAllBusServices, [{
+  (0, _createClass2["default"])(updateBusServices, [{
     key: "execute",
     value: function () {
       var _execute = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(_ref) {
@@ -37,30 +39,64 @@ var listAllBusServices = /*#__PURE__*/function () {
                   break;
                 }
 
-                throw new Error("please send the bus id");
+                throw new Error("please send the id of your bus");
 
               case 3:
                 _context.next = 5;
+                return (0, _validation.updateBusValidation)(bus);
+
+              case 5:
+                _context.next = 7;
                 return this.db.findOne({
                   where: {
                     id: id
                   }
                 });
 
-              case 5:
+              case 7:
                 response = _context.sent;
 
+                if (!(bus.placa && response)) {
+                  _context.next = 11;
+                  break;
+                }
+
+                if (!(bus.placa === response.placa)) {
+                  _context.next = 11;
+                  break;
+                }
+
+                throw new Error("You cannot edit your placa because has a bus with this placa");
+
+              case 11:
                 if (response) {
-                  _context.next = 8;
+                  _context.next = 13;
                   break;
                 }
 
                 throw new Error("This bus is not exists");
 
-              case 8:
+              case 13:
+                _context.next = 15;
+                return this.db.update(bus, {
+                  where: {
+                    id: id
+                  }
+                });
+
+              case 15:
+                _context.next = 17;
+                return this.db.findOne({
+                  where: {
+                    id: id
+                  }
+                });
+
+              case 17:
+                response = _context.sent;
                 return _context.abrupt("return", response);
 
-              case 9:
+              case 19:
               case "end":
                 return _context.stop();
             }
@@ -75,8 +111,8 @@ var listAllBusServices = /*#__PURE__*/function () {
       return execute;
     }()
   }]);
-  return listAllBusServices;
+  return updateBusServices;
 }();
 
-var _default = listAllBusServices;
+var _default = updateBusServices;
 exports["default"] = _default;

@@ -1,6 +1,6 @@
 "use strict";
 
-var dotenv = require("dotenv").config;
+var _env = require("dotenv").config();
 
 module.exports = {
   host: process.env.DATABASE_HOST,

@@ -21,6 +21,8 @@ var _listAllBusServices = _interopRequireDefault(require("../services/listAllBus
 
 var _listBusServices = _interopRequireDefault(require("../services/listBusServices"));
 
+var _updateBusServices = _interopRequireDefault(require("../services/updateBusServices"));
+
 var _deleteBusServices = _interopRequireDefault(require("../services/deleteBusServices"));
 
 var database;
@@ -111,9 +113,9 @@ var busController = /*#__PURE__*/function () {
       return index;
     }()
   }, {
-    key: "list",
+    key: "show",
     value: function () {
-      var _list = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
+      var _show = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
         var id, listBusServices, response;
         return _regenerator["default"].wrap(function _callee3$(_context3) {
           while (1) {
@@ -146,49 +148,93 @@ var busController = /*#__PURE__*/function () {
         }, _callee3, null, [[1, 9]]);
       }));
 
-      function list(_x5, _x6) {
-        return _list.apply(this, arguments);
+      function show(_x5, _x6) {
+        return _show.apply(this, arguments);
       }
 
-      return list;
+      return show;
     }()
   }, {
-    key: "delete",
+    key: "update",
     value: function () {
-      var _delete2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-        var id, deleteBusServices, response;
+      var _update = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
+        var id, bus, updateBusServices, response;
         return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 id = req.params.id;
-                _context4.prev = 1;
+                bus = req.body;
+                _context4.prev = 2;
+                updateBusServices = new _updateBusServices["default"](database);
+                _context4.next = 6;
+                return updateBusServices.execute({
+                  id: id,
+                  bus: bus
+                });
+
+              case 6:
+                response = _context4.sent;
+                return _context4.abrupt("return", res.status(200).json(response));
+
+              case 10:
+                _context4.prev = 10;
+                _context4.t0 = _context4["catch"](2);
+                return _context4.abrupt("return", res.status(400).json({
+                  error: _context4.t0.message
+                }));
+
+              case 13:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[2, 10]]);
+      }));
+
+      function update(_x7, _x8) {
+        return _update.apply(this, arguments);
+      }
+
+      return update;
+    }()
+  }, {
+    key: "delete",
+    value: function () {
+      var _delete2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
+        var id, deleteBusServices, response;
+        return _regenerator["default"].wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                id = req.params.id;
+                _context5.prev = 1;
                 deleteBusServices = new _deleteBusServices["default"](database);
-                _context4.next = 5;
+                _context5.next = 5;
                 return deleteBusServices.execute({
                   id: id
                 });
 
               case 5:
-                response = _context4.sent;
-                return _context4.abrupt("return", res.status(200).json(response));
+                response = _context5.sent;
+                return _context5.abrupt("return", res.status(200).json(response));
 
               case 9:
-                _context4.prev = 9;
-                _context4.t0 = _context4["catch"](1);
-                return _context4.abrupt("return", res.status(400).json({
-                  error: _context4.t0.message
+                _context5.prev = 9;
+                _context5.t0 = _context5["catch"](1);
+                return _context5.abrupt("return", res.status(400).json({
+                  error: _context5.t0.message
                 }));
 
               case 12:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, null, [[1, 9]]);
+        }, _callee5, null, [[1, 9]]);
       }));
 
-      function _delete(_x7, _x8) {
+      function _delete(_x9, _x10) {
         return _delete2.apply(this, arguments);
       }
 

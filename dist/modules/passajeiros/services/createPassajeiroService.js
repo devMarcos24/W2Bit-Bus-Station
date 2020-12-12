@@ -15,6 +15,8 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
+var _validation = require("../validation");
+
 var CreatePassajeiroService = /*#__PURE__*/function () {
   function CreatePassajeiroService(db) {
     (0, _classCallCheck2["default"])(this, CreatePassajeiroService);
@@ -25,33 +27,41 @@ var CreatePassajeiroService = /*#__PURE__*/function () {
     key: "execute",
     value: function () {
       var _execute = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(passajeiro) {
-        var existPass;
+        var existPass, response;
         return _regenerator["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(passajeiro);
-                _context.next = 3;
+                _context.next = 2;
+                return (0, _validation.createPassajeroValitation)(passajeiro);
+
+              case 2:
+                _context.next = 4;
                 return this.db.findOne({
                   where: {
                     cpf: passajeiro.cpf
                   }
                 });
 
-              case 3:
+              case 4:
                 existPass = _context.sent;
 
                 if (!existPass) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
                 throw new Error("this passajeiro already exists");
 
-              case 6:
-                return _context.abrupt("return", passajeiro);
-
               case 7:
+                _context.next = 9;
+                return this.db.create(passajeiro);
+
+              case 9:
+                response = _context.sent;
+                return _context.abrupt("return", response);
+
+              case 11:
               case "end":
                 return _context.stop();
             }
