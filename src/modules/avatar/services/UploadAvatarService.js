@@ -19,9 +19,7 @@ class UploadAvatarSevices {
 
     avatar.userId = user_id;
 
-    const stockAvatar = await this.db.create(avatar);
-
-    return stockAvatar;
+    return avatar;
   }
 }
 
