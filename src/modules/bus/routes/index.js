@@ -7,7 +7,8 @@ class BusRoutes {
 
     busRouter.post("/", Authenticate, busController.create);
     busRouter.get("/", Authenticate, busController.index);
-    busRouter.get("/:id", Authenticate, busController.list);
+    busRouter.get("/:id", Authenticate, busController.show);
+    busRouter.put("/:id", Authenticate, busController.update);
     busRouter.delete("/:id", Authenticate, busController.delete);
 
     return busRouter;

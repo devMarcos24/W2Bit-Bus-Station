@@ -1,6 +1,7 @@
 import CreateBusServices from "../services/createBusServices";
 import ListAllBusServices from "../services/listAllBusServices";
 import ListBusServices from "../services/listBusServices";
+import UpdateBusServices from "../services/updateBusServices";
 import DeleteBusServices from "../services/deleteBusServices";
 
 let database;
@@ -34,13 +35,28 @@ class busController {
     }
   }
 
-  async list(req, res) {
+  async show(req, res) {
     const { id } = req.params;
 
     try {
       const listBusServices = new ListBusServices(database);
 
       const response = await listBusServices.execute({ id });
+
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  }
+
+  async update(req, res) {
+    const { id } = req.params;
+    const bus = req.body;
+
+    try {
+      const updateBusServices = new UpdateBusServices(database);
+
+      const response = await updateBusServices.execute({ id, bus });
 
       return res.status(200).json(response);
     } catch (error) {

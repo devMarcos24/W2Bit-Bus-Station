@@ -1,10 +1,12 @@
+import { createPassajeroValitation } from "../validation";
+
 class CreatePassajeiroService {
   constructor(db) {
     this.db = db;
   }
 
   async execute(passajeiro) {
-    console.log(passajeiro);
+    await createPassajeroValitation(passajeiro);
 
     const existPass = await this.db.findOne({
       where: { cpf: passajeiro.cpf },

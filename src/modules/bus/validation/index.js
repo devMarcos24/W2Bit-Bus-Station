@@ -12,3 +12,16 @@ export const createBusValidation = async (bus) => {
 
   return verifySchema;
 };
+
+export const updateBusValidation = async (bus) => {
+  const schema = Joi.object({
+    placa: Joi.string(),
+    ano: Joi.number(),
+    modelo: Joi.string(),
+    acentos: Joi.number(),
+  });
+
+  const verifySchema = await Joi.validate(bus, schema);
+
+  return verifySchema;
+};

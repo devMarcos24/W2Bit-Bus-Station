@@ -1,6 +1,6 @@
 import { hash } from "bcrypt";
 
-import { createUserValidation } from "../validation/validations";
+import { createUserValidation } from "../validation";
 
 class CreateUserService {
   constructor(db) {

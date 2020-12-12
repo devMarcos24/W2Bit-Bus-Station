@@ -3,9 +3,9 @@ class listAllBusServices {
     this.db = db;
   }
 
-  async execute({ id }) {
+  async execute({ id, bus }) {
     if (!id) {
-      throw new Error("please send the id of your bus");
+      throw new Error("please send the bus id");
     }
 
     const response = await this.db.findOne({ where: { id } });

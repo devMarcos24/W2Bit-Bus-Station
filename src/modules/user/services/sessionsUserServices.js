@@ -1,6 +1,8 @@
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 
+import { sessionValidation } from "../validation";
+
 import AuthConfig from "../../../config/auth";
 
 class CreateUserService {
@@ -9,6 +11,8 @@ class CreateUserService {
   }
 
   async execute({ email, password }) {
+    await sessionValidation({ email, password });
+
     const user = await this.db.findOne({ where: { email } });
 
     if (!user) {
