@@ -3,8 +3,10 @@ import setupApp from "./setupApp";
 
 import "../database";
 
+const port = process.env.PORT || 3333;
+
 setupApp().then((app) => {
-  app.listen(3333, () => {
+  app.listen(port, () => {
     console.log("running on the port 3333");
   });
 });
