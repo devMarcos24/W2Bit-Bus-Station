@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/shared/infra/server.js",
     "build": "babel src --out-dir dist",
-    "start:serve": "node dist/shared/infra/server.js"
+    "start:serve": "node dist/shared/Infra/server.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
