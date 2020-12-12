@@ -1,4 +1,6 @@
-const dotenv = require("dotenv").config;
+"use strict";
+
+var dotenv = require("dotenv").config;
 
 module.exports = {
   host: process.env.DATABASE_HOST,
@@ -7,9 +9,8 @@ module.exports = {
   database: process.env.DATABASE_NAME,
   dialect: process.env.DATABASE_DIALECT,
   define: {
-    timestamps: true,
-  },
-  // host: "localhost",
+    timestamps: true
+  } // host: "localhost",
   // username: "postgres",
   // password: "docker",
   // database: "w2bi",
@@ -17,4 +18,5 @@ module.exports = {
   // define: {
   //   timestamps: true,
   // },
+
 };

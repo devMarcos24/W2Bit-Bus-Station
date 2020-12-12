@@ -5,9 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/shared/infra/server.js",
-    "typeorm": "node ./node_modules/typeorm/cli.js"
+    "build": "babel src --out-dir dist",
+    "start:serve": "node dist/shared/infra/server.js"
   },
   "dependencies": {
+    "@babel/runtime": "^7.10.5",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -21,6 +23,16 @@
   "devDependencies": {
     "nodemon": "^2.0.6",
     "sequelize-cli": "^6.2.0",
-    "sucrase": "^3.16.0"
+    "sucrase": "^3.16.0",
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-throw-expressions": "^7.10.4",
+    "@babel/plugin-transform-arrow-functions": "^7.10.4",
+    "@babel/plugin-transform-async-to-generator": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/runtime": "^7.10.5",
+    "babel-node": "^0.0.1-security"
   }
 }
