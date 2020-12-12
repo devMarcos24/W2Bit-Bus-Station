@@ -1,4 +1,4 @@
-const dotenv = require("dotenv").config;
+const _env = require("dotenv").config();
 
 module.exports = {
   host: process.env.DATABASE_HOST,

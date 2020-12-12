@@ -14,7 +14,9 @@ class CreatePassajeiroService {
       throw new Error("this passajeiro already exists");
     }
 
-    return passajeiro;
+    const response = await this.db.create(passajeiro);
+
+    return response;
   }
 }
 
