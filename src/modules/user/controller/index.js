@@ -1,4 +1,5 @@
 import CreateUserService from "../services/createUserSevice";
+import UpdateUserService from "../services/updateUserService";
 import SessionsUserService from "../services/sessionsUserServices";
 
 let database;
@@ -20,6 +21,22 @@ class UserController {
       res.status(201).json(response);
     } catch (error) {
       res.status(400).json({ error: error.message });
+    }
+  }
+
+  async update(req, res) {
+    const update = req.body;
+    try {
+      const updateUserService = new UpdateUserService(database);
+
+      const response = await updateUserService.execute({
+        user_id: req.user.id,
+        update,
+      });
+
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
     }
   }
 

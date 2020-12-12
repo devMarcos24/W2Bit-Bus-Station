@@ -24,6 +24,8 @@ class CreateUserService {
 
     const response = await this.db.create({
       ...user,
+      url_foto:
+        "https://cycle-uploads.s3.amazonaws.com/625e5d83defd83e861b334db0f559588-link-attach-user-icon-png_127466.jpg",
       password_hash: passwordHash,
     });
 

@@ -4,8 +4,10 @@ import databaseConfig from "../../config/database";
 import User from "../Models/users";
 import Bus from "../Models/buses";
 import Passajeiro from "../Models/passajeiros";
+import Avatars from "../Models/avatars";
+import Viagens from "../Models/viagens";
 
-const models = [User, Bus, Passajeiro];
+const models = [User, Bus, Passajeiro, Avatars, Viagens];
 
 class Database {
   constructor() {

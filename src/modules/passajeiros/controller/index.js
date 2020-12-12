@@ -1,3 +1,4 @@
+import ListPassajeiroService from "../services/listPassajeiroServices";
 import CreatePassajeiroService from "../services/createPassajeiroService";
 import UpdatePassajeiroService from "../services/updatePassajeiroService";
 import DeletePassajeiroService from "../services/deletePassajeiroService";
@@ -7,6 +8,17 @@ let database;
 class passajeirosController {
   constructor(db) {
     database = db;
+  }
+
+  async index(req, res) {
+    try {
+      const listPassajeiroService = new ListPassajeiroService(database);
+
+      const response = await listPassajeiroService.execute();
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
   }
 
   async create(req, res) {
