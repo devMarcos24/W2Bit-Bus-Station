@@ -25,6 +25,8 @@ var passajeiroRoutes = /*#__PURE__*/function () {
     value: function configure(passajeiroController) {
       var passajeiroRouter = (0, _express.Router)();
       passajeiroRouter.post("/", _authenticateMiddleware["default"], passajeiroController.create);
+      passajeiroRouter.put("/:id", _authenticateMiddleware["default"], passajeiroController.update);
+      passajeiroRouter["delete"]("/:id", _authenticateMiddleware["default"], passajeiroController["delete"]);
       return passajeiroRouter;
     }
   }]);

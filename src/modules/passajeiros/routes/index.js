@@ -6,6 +6,8 @@ class passajeiroRoutes {
     const passajeiroRouter = Router();
 
     passajeiroRouter.post("/", Authenticate, passajeiroController.create);
+    passajeiroRouter.put("/:id", Authenticate, passajeiroController.update);
+    passajeiroRouter.delete("/:id", Authenticate, passajeiroController.delete);
 
     return passajeiroRouter;
   }

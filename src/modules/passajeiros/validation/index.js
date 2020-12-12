@@ -11,3 +11,15 @@ export const createPassajeroValitation = async (passajeiro) => {
 
   return verifySchema;
 };
+
+export const updatePassajeroValitation = async (passajeiro) => {
+  const schema = Joi.object({
+    name: Joi.string(),
+    age: Joi.number(),
+    cpf: Joi.string(),
+  });
+
+  const verifySchema = await Joi.validate(passajeiro, schema);
+
+  return verifySchema;
+};
